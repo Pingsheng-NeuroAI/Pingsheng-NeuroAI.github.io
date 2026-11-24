@@ -1,26 +1,24 @@
-{% include base_path %}
-
-<div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
-        <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist"><a href="{{ base_path }}/">{{ site.title }}</a></li>
-          {% for link in site.data.navigation.main %}
-            {% if link.url contains 'http' %}
-              {% assign domain = '' %}
-            {% else %}
-              {% assign domain = base_path %}
-            {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
-          {% endfor %}
-          <li id="theme-toggle" class="masthead__menu-item persist tail">
-            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
-          </li>
-        </ul>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
+<header class="profile-masthead">
+  <a class="profile-skip" href="#main">Skip to content</a>
+  <div class="profile-wrap profile-bar">
+    <a class="profile-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} home">
+      <span class="profile-monogram" aria-hidden="true">pl</span>
+      <span>{{ site.title }}</span>
+    </a>
+    <nav class="profile-nav" aria-label="Main navigation">
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>About</a>
+      {% for item in site.data.navigation.main %}
+        {% assign active = false %}
+        {% if page.collection == 'publications' and item.url == '/publications/' %}
+          {% assign active = true %}
+        {% elsif page.collection == 'posts' and item.url == '/year-archive/' %}
+          {% assign active = true %}
+        {% endif %}
+        <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% elsif active %} aria-current="location"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+    </nav>
+    <button class="profile-theme" id="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false" title="Toggle dark theme">
+      <i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true"></i>
+    </button>
   </div>
-</div>
+</header>

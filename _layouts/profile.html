@@ -1,0 +1,55 @@
+---
+layout: default
+---
+
+<main id="main" class="profile-home profile-wrap">
+  <section class="profile-intro" aria-labelledby="profile-name">
+    <div class="profile-intro-copy">
+      <p class="profile-affiliation">
+        <a href="https://www.mcgill.ca/">McGill University</a>
+        <span aria-hidden="true">/</span>
+        <a href="https://mila.quebec/en">Mila</a>
+      </p>
+      <h1 id="profile-name">{% assign names = site.author.name | split: ' ' %}{% for name in names %}{% if forloop.last %}<em>{{ name }}</em>{% else %}{{ name }} {% endif %}{% endfor %}</h1>
+      <p class="profile-role">PhD student in Computer Science</p>
+      <p class="profile-intro-text">I work at the intersection of neuroscience and AI. My research focuses on generalist multimodal representation learning, foundation models for neural data, and embodied AI.</p>
+      <div class="profile-contact" aria-label="Contact and profiles">
+        {% if site.author.email %}<a class="profile-contact-primary" href="mailto:{{ site.author.email }}"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Email me</a>{% endif %}
+        {% if site.author.googlescholar %}<a href="{{ site.author.googlescholar | escape }}"><i class="ai ai-google-scholar" aria-hidden="true"></i>Google Scholar</a>{% endif %}
+        {% if site.author.github %}<a href="https://github.com/{{ site.author.github }}"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a>{% endif %}
+      </div>
+    </div>
+    <figure class="profile-portrait">
+      <div class="profile-portrait-plate">
+        <img src="{{ site.author.avatar | prepend: '/images/' | relative_url }}" alt="{{ site.author.name }}" width="400" height="400" fetchpriority="high">
+      </div>
+      {% if site.author.location %}<figcaption><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Based in {{ site.author.location }}</figcaption>{% endif %}
+    </figure>
+  </section>
+
+  {% if site.publications.size > 0 %}
+    <section class="profile-recent" aria-labelledby="recent-publications">
+      <div class="profile-section-head">
+        <h2 id="recent-publications">Recent <em>publications</em></h2>
+        <a class="profile-text-link" href="{{ '/publications/' | relative_url }}">All publications</a>
+      </div>
+      <ul class="profile-paper-list">
+        {% assign recent = site.publications | sort: 'date' | reverse %}
+        {% for paper in recent limit: 2 %}
+          <li>
+            <time datetime="{{ paper.date | date: '%Y-%m-%d' }}">{{ paper.date | date: '%Y' }}</time>
+            <div>
+              <h3><a href="{{ paper.url | relative_url }}">{{ paper.title | escape }}</a></h3>
+              <p>{{ paper.venue | escape }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  <section class="profile-background" aria-labelledby="profile-background-title">
+    <h2 id="profile-background-title">Background</h2>
+    <div>{{ content }}</div>
+  </section>
+</main>

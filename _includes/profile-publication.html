@@ -1,0 +1,17 @@
+<li class="profile-records__entry">
+  <time class="profile-records__year" datetime="{{ include.record.date | date: '%Y-%m-%d' }}">{{ include.record.date | date: '%Y' }}</time>
+  <div class="profile-records__body">
+    <h3 class="profile-records__title"><a href="{{ include.record.url | relative_url }}">{{ include.record.title | escape }}</a></h3>
+    {% assign authors = include.record.authors | default: include.record.author %}
+    {% if authors %}<p class="profile-records__authors">{{ authors | join: ", " | escape }}</p>{% endif %}
+    {% if include.record.venue %}<p class="profile-records__venue">{{ include.record.venue | escape }}</p>{% endif %}
+    {% if include.record.citation %}<p class="profile-records__citation">{{ include.record.citation }}</p>{% endif %}
+    {% if include.record.paperurl or include.record.slidesurl or include.record.bibtexurl %}
+      <div class="profile-records__links">
+        {% if include.record.paperurl %}<a href="{{ include.record.paperurl | escape }}" aria-label="Paper for {{ include.record.title | escape }}">Paper&nbsp;<span aria-hidden="true">↗</span></a>{% endif %}
+        {% if include.record.slidesurl %}<a href="{{ include.record.slidesurl | escape }}">Slides</a>{% endif %}
+        {% if include.record.bibtexurl %}<a href="{{ include.record.bibtexurl | escape }}">BibTeX</a>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</li>

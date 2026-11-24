@@ -1,0 +1,139 @@
+// Publication lists and the academic CV share a dated record layout.
+.profile-records {
+  color: var(--profile-ink);
+  font-family: var(--profile-sans);
+  padding-bottom: 2rem;
+
+  .profile-records__scholar {
+    margin: .6rem 0 2rem;
+    font-size: .89rem;
+  }
+
+  .profile-records__scholar a,
+  .profile-records__links a {
+    color: var(--profile-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .22em;
+
+    &:hover { text-decoration-thickness: 2px; }
+  }
+
+  .profile-records__group + .profile-records__group {
+    margin-top: 2.9rem;
+  }
+
+  .profile-records__heading {
+    margin: 0;
+    padding: 0 0 .64rem;
+    border-bottom: 1px solid var(--profile-ink);
+    color: var(--profile-ink);
+    font: 400 1.8rem/1.16 var(--profile-serif);
+    letter-spacing: -.025em;
+  }
+
+  .profile-records__list,
+  .profile-records__honors,
+  .profile-records__education ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .profile-records__entry,
+  .profile-records__honors li,
+  .profile-records__education li {
+    margin: 0;
+    padding: 1.13rem 0 1.2rem;
+    border-bottom: 1px solid var(--profile-rule);
+  }
+
+  .profile-records__entry,
+  .profile-records__honors li {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    column-gap: 1rem;
+    align-items: baseline;
+  }
+
+  .profile-records__year,
+  .profile-records__honors time {
+    color: var(--profile-muted);
+    font-size: .79rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .profile-records__title {
+    margin: 0;
+    font: 400 1.65rem/1.2 var(--profile-serif);
+    letter-spacing: -.017em;
+    overflow-wrap: break-word;
+
+    a {
+      color: var(--profile-ink);
+      text-decoration: none;
+
+      &:hover, &:focus-visible {
+        color: var(--profile-accent);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: .16em;
+      }
+    }
+  }
+
+  .profile-records__venue,
+  .profile-records__authors,
+  .profile-records__citation {
+    margin: .34rem 0 0;
+    color: var(--profile-muted);
+    font-size: .88rem;
+    line-height: 1.45;
+  }
+
+  .profile-records__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1rem;
+    margin-top: .55rem;
+    font-size: .875rem;
+    font-weight: 550;
+  }
+
+  .profile-records__education li,
+  .profile-records__honors li {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .profile-records__honors li {
+    grid-template-columns: 6.1rem minmax(0, 1fr);
+  }
+
+  .profile-records__honors small {
+    display: block;
+    margin-top: .2rem;
+    color: var(--profile-muted);
+    font-size: .88rem;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--profile-accent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 38rem) {
+    .profile-records__group + .profile-records__group { margin-top: 2.2rem; }
+    .profile-records__entry { grid-template-columns: 2.6rem minmax(0, 1fr); column-gap: .6rem; }
+    .profile-records__honors li { grid-template-columns: 5rem minmax(0, 1fr); column-gap: .7rem; }
+    .profile-records__title { font-size: 1.42rem; }
+  }
+}
+
+.profile-records--cv {
+  .profile-records__entry { padding: .85rem 0; }
+  .profile-records__title { font-size: 1.39rem; }
+  .profile-records__links { margin-top: .32rem; }
+}

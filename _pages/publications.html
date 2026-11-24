@@ -5,32 +5,22 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
+<div class="profile-records">
+  {% if site.author.googlescholar %}
+    <p class="profile-records__scholar"><a href="{{ site.author.googlescholar | escape }}">Google Scholar <span aria-hidden="true">↗</span></a></p>
+  {% endif %}
 
-{% include base_path %}
-
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
+  {% assign publications = site.publications | sort: "date" | reverse %}
+  {% assign groups = publications | group_by: "category" %}
+  {% for group in groups %}
+    {% assign category = site.publication_category[group.name] %}
+    <section class="profile-records__group">
+      <h2 class="profile-records__heading">{{ category.title | default: group.name | default: "Other publications" | escape }}</h2>
+      <ul class="profile-records__list">
+        {% for record in group.items %}
+          {% include profile-publication.html record=record %}
+        {% endfor %}
+      </ul>
+    </section>
   {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
-
+</div>

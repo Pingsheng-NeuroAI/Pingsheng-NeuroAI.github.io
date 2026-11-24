@@ -2,50 +2,37 @@
    Various functions that we want to use within the template
    ========================================================================== */
 
-// Determine the expected state of the theme toggle, which can be "dark", "light", or
-// "system". Default is "system".
-let determineThemeSetting = () => {
-  let themeSetting = localStorage.getItem("theme");
-  return (themeSetting != "dark" && themeSetting != "light" && themeSetting != "system") ? "system" : themeSetting;
-};
+const systemColorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+let themePreference;
+try {
+  themePreference = localStorage.getItem("theme");
+} catch {
+  // Storage can be disabled in the browser.
+}
 
-// Determine the computed theme, which can be "dark" or "light". If the theme setting is
-// "system", the computed theme is determined based on the user's system preference.
-let determineComputedTheme = () => {
-  let themeSetting = determineThemeSetting();
-  if (themeSetting != "system") {
-    return themeSetting;
+function determineComputedTheme() {
+  if (themePreference === "dark" || themePreference === "light") {
+    return themePreference;
   }
-  return (userPref && userPref("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
-};
+  return systemColorScheme.matches ? "dark" : "light";
+}
 
-// detect OS/browser preference
-const browserPref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+function setTheme() {
+  const dark = determineComputedTheme() === "dark";
+  $("html").attr("data-theme", dark ? "dark" : null);
+  $("#theme-icon").toggleClass("fa-moon", dark).toggleClass("fa-sun", !dark);
+  $("#theme-toggle").attr("aria-pressed", String(dark));
+}
 
-// Set the theme on page load or when explicitly called
-let setTheme = (theme) => {
-  const use_theme =
-    theme ||
-    localStorage.getItem("theme") ||
-    $("html").attr("data-theme") ||
-    browserPref;
-
-  if (use_theme === "dark") {
-    $("html").attr("data-theme", "dark");
-    $("#theme-icon").removeClass("fa-sun").addClass("fa-moon");
-  } else if (use_theme === "light") {
-    $("html").removeAttr("data-theme");
-    $("#theme-icon").removeClass("fa-moon").addClass("fa-sun");
+function toggleTheme() {
+  themePreference = determineComputedTheme() === "dark" ? "light" : "dark";
+  setTheme();
+  try {
+    localStorage.setItem("theme", themePreference);
+  } catch {
+    // The selected theme still applies to the current page.
   }
-};
-
-// Toggle the theme manually
-var toggleTheme = () => {
-  const current_theme = $("html").attr("data-theme");
-  const new_theme = current_theme === "dark" ? "light" : "dark";
-  localStorage.setItem("theme", new_theme);
-  setTheme(new_theme);
-};
+}
 
 /* ==========================================================================
    Plotly integration script so that Markdown codeblocks will be rendered
@@ -92,30 +79,10 @@ $(document).ready(function () {
 
   // If the user hasn't chosen a theme, follow the OS preference
   setTheme();
-  window.matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener("change", (e) => {
-          if (!localStorage.getItem("theme")) {
-            setTheme(e.matches ? "dark" : "light");
-          }
-        });
+  systemColorScheme.addEventListener("change", setTheme);
 
   // Enable the theme toggle
   $('#theme-toggle').on('click', toggleTheme);
-
-  // Enable the sticky footer
-  var bumpIt = function () {
-    $("body").css("margin-bottom", $(".page__footer").outerHeight(true));
-  }
-  $(window).resize(function () {
-    didResize = true;
-  });
-  setInterval(function () {
-    if (didResize) {
-      didResize = false;
-      bumpIt();
-    }}, 250);
-  var didResize = false;
-  bumpIt();
 
   // FitVids init
   fitvids();
