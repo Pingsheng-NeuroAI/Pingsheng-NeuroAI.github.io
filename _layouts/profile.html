@@ -23,7 +23,10 @@ layout: default
       <div class="profile-portrait-plate">
         <img src="{{ site.author.avatar | prepend: '/images/' | relative_url }}" alt="{{ site.author.name }}" width="400" height="400" fetchpriority="high">
       </div>
-      {% if site.author.location %}<figcaption><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Based in {{ site.author.location }}</figcaption>{% endif %}
+      <figcaption>
+        {% if site.author.location %}<span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Based in {{ site.author.location }}</span>{% endif %}
+        {% if site.author.pronouns %}<span>{{ site.author.pronouns }}</span>{% endif %}
+      </figcaption>
     </figure>
   </section>
 

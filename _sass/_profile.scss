@@ -218,6 +218,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .profile-portrait figcaption {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
   gap: .42rem;
@@ -225,6 +226,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font: normal .8rem/1.4 var(--profile-sans);
   color: var(--profile-muted);
 }
+.profile-portrait figcaption span + span { border-left: 1px solid var(--profile-rule); padding-left: .5rem; }
 .profile-recent, .profile-background {
   border-top: 1px solid var(--profile-ink);
   padding-block: clamp(2rem, 4vw, 3.3rem);
