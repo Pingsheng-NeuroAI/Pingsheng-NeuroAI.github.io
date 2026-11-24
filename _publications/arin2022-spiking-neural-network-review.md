@@ -1,5 +1,12 @@
 ---
 title: "An Introductory Review of Spiking Neural Network and Artificial Neural Network: From Biological Intelligence to Artificial Intelligence"
+authors:
+  - Shengjie Zheng
+  - Lang Qian
+  - Pingsheng Li
+  - Chenggang He
+  - Xiaoqi Qin
+  - Xiaojian Li
 collection: publications
 category: conferences
 permalink: /publication/arin2022-spiking-neural-network-review

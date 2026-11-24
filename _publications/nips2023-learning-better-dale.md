@@ -1,5 +1,10 @@
 ---
 title: "Learning better with dale’s law: A spectral perspective"
+authors:
+  - Pingsheng Li
+  - Jonathan Cornford
+  - Arna Ghosh
+  - Blake Richards
 collection: publications
 category: conferences
 permalink: /publication/nips2023-learning-better-dale

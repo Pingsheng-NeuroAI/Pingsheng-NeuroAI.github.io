@@ -1,5 +1,7 @@
 ---
 title: "Novelty-seeking Guides Formation of Disentangled Representations"
+authors:
+  - Pingsheng Li
 collection: publications
 category: conferences
 permalink: /publication/ccn2025-novelty-seeking

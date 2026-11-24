@@ -85,7 +85,6 @@
   }
 
   .profile-records__venue,
-  .profile-records__authors,
   .profile-records__citation {
     margin: .34rem 0 0;
     color: var(--profile-muted);
@@ -136,4 +135,15 @@
   .profile-records__entry { padding: .85rem 0; }
   .profile-records__title { font-size: 1.39rem; }
   .profile-records__links { margin-top: .32rem; }
+}
+
+.profile-byline {
+  margin: .45rem 0 0;
+  color: var(--profile-muted);
+  font: 400 .9rem/1.5 var(--profile-sans);
+
+  strong {
+    color: var(--profile-ink);
+    font-weight: 650;
+  }
 }

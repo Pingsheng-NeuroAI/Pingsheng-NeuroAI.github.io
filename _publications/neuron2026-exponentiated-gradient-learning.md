@@ -1,5 +1,16 @@
 ---
 title: "Exponentiated gradient learning yields brain-like synaptic distributions"
+authors:
+  - Jonathan Cornford
+  - Roman Pogodin
+  - Arna Ghosh
+  - Kaiwen Sheng
+  - Brendan A. Bicknell
+  - Olivier Codol
+  - Pingsheng Li
+  - Beverley A. Clark
+  - Guillaume Lajoie
+  - Blake A. Richards
 collection: publications
 category: manuscripts
 permalink: /publication/neuron2026-exponentiated-gradient-learning

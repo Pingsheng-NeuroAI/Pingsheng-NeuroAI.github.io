@@ -1,0 +1,13 @@
+{% assign authors = include.record.authors | default: include.record.author %}
+{% if authors %}
+  <p class="profile-byline"><span class="visually-hidden">Authors: </span>
+    {%- for author in authors -%}
+      {%- unless forloop.first %}, {% endunless -%}
+      {%- if author == site.author.name -%}
+        <strong>{{ author | escape }}</strong>
+      {%- else -%}
+        {{ author | escape }}
+      {%- endif -%}
+    {%- endfor -%}
+  </p>
+{% endif %}

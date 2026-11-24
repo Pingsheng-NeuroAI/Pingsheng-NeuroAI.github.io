@@ -1,0 +1,22 @@
+<div class="attention-readout" id="attention-readout" hidden>
+  <div class="attention-readout__control">
+    <label for="attention-query">Final query</label>
+    <span data-query-label aria-hidden="true">+1</span>
+    <input type="range" id="attention-query" min="-1" max="1" step="0.1" value="1">
+  </div>
+  <table aria-label="Attention weights for the selected final query">
+    <thead><tr><th scope="col">Position</th><th scope="col">Key</th><th scope="col">Value</th><th scope="col">Weight</th></tr></thead>
+    <tbody>
+      {% assign keys = '0,1,-1,2' | split: ',' %}
+      {% assign values = '2,4,8,6' | split: ',' %}
+      {% for key in keys %}
+        <tr data-key="{{ key }}" data-value="{{ values[forloop.index0] }}">
+          <th scope="row">{{ forloop.index }}</th><td>{{ key }}</td><td>{{ values[forloop.index0] }}</td>
+          <td><span class="attention-readout__weight"><span class="attention-readout__track" aria-hidden="true"><span></span></span><span data-weight></span></span></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="attention-readout__result">Weighted output <output for="attention-query"></output></p>
+</div>
+<script defer src="{{ '/assets/js/attention-readout.js' | relative_url }}"></script>

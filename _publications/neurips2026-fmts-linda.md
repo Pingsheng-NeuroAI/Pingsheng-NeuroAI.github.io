@@ -1,5 +1,15 @@
 ---
 title: "LINDA: Learning Integrative Neural Dynamics with Joint Embedding Predictive Architecture"
+authors:
+  - Pingsheng Li
+  - Anirudh Jamkhandi
+  - Tom M George
+  - Ximeng Mao
+  - Nanda H Krishna
+  - Le Thuy Duong Nguyen
+  - Matthew G Perich
+  - Guillaume Lajoie
+  - Blake Richards
 collection: publications
 category: conferences
 permalink: /publication/neurips2026-fmts-linda

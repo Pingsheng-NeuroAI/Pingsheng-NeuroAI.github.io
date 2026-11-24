@@ -43,6 +43,7 @@ layout: default
             <time datetime="{{ paper.date | date: '%Y-%m-%d' }}">{{ paper.date | date: '%Y' }}</time>
             <div>
               <h3><a href="{{ paper.url | relative_url }}">{{ paper.title | escape }}</a></h3>
+              {% include publication-authors.html record=paper %}
               <p>{{ paper.venue | escape }}</p>
             </div>
           </li>
