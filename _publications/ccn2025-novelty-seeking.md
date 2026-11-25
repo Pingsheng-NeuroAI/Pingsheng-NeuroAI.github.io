@@ -5,7 +5,7 @@ authors:
 collection: publications
 category: conferences
 permalink: /publication/ccn2025-novelty-seeking
-venue: 'Conference on Cognitive Computational Neuroscience (CCN), extended abstract'
+venue: 'Conference on Cognitive Computational Neuroscience (CCN), extended abstract selected as a contributed talk'
 date: 2025-08-15
 paperurl: 'https://2025.ccneuro.org/abstract_pdf/Li_2025_Novelty-seeking_Guides_Formation_Disentangled_Representations.pdf'
 ---
