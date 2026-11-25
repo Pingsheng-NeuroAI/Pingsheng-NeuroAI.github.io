@@ -9,22 +9,22 @@ tags:
   - representation learning
 ---
 
-At a foraging station, a macaque’s fourth press on a lever delivers a liquid reward. Its fifth press starts a three-minute timer before the station can pay out again. The same movement has two different consequences. To explain why the animal would make that fifth press, it helps to consider what happens on its *next visit*. [Voloh et al., 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10591875/)
+In the foraging task studied by Benjamin Voloh and colleagues, a macaque’s fourth press on a station’s lever delivers a liquid reward. Its fifth press starts a three-minute timer before the station can pay out again. The same movement has two different consequences. To explain why the animal would make that fifth press, it helps to consider what happens on its *next visit*. [Voloh et al., 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10591875/)
 
 Hierarchical reinforcement learning (HRL) gives us a precise way to describe that choice. An agent could select a temporally extended action, or *option*, such as “harvest this patch.” The option has a policy for choosing individual movements and a rule for when to stop. The agent can therefore evaluate a whole visit in terms of the reward it yields and the time it costs, and reuse the policy at a station that requires a different reach. For prefrontal cortex (PFC), that raises a concrete question. **What could carry the identity of the ongoing activity while the animal changes posture, presses, and collects each reward?** [Sutton, Precup & Singh, 1999](https://doi.org/10.1016/S0004-3702(99)00052-1) · [Botvinick, Niv & Barto, 2009](https://pmc.ncbi.nlm.nih.gov/articles/PMC2783353/)
 
-In recordings from freely moving macaques, researchers had already found that frontal activity tracked both recognizable actions and switches between them. They had also measured how long fluctuations in neural activity persisted across frontal regions. A slow neural signal could carry context across movements, but it could also follow a slowly changing input. My master’s thesis in Alexander Mathis’s lab at EPFL connected those observations by asking **which timescale of behavior best predicts a given neural response**. [Voloh et al., 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10591875/) · [Manea et al., 2024](https://doi.org/10.1038/s41467-024-46488-1)
+Voloh and colleagues found that frontal activity tracked both recognizable actions and switches between them. Manea and colleagues subsequently measured how long fluctuations in neural activity persisted across frontal regions during foraging. A slow neural signal could carry context across movements, but it could also follow a slowly changing input. My master’s thesis in Alexander Mathis’s lab at EPFL connected those observations by asking **which timescale of behavior best predicts a given neural response**. [Voloh et al., 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10591875/) · [Manea et al., 2024](https://doi.org/10.1038/s41467-024-46488-1)
 
 ## Learning a hierarchy from behavior
 
-I used recordings from two rhesus macaques, with about 80 sessions per animal containing both 3D pose and neural data. I analyzed the second through fourth presses at a station, when the animal stayed and received the same reward. Across those trials, the cue and outcome repeated while the animal could reach the lever in different ways.
+My starting point was the foraging dataset collected by the team behind Voloh et al. (2023). Jan Zimmermann shared the recordings for my thesis. About 80 sessions from each of two rhesus macaques contained both 3D pose and neural data. I analyzed the second through fourth presses at a station, when the animal stayed and received the same reward. Across those trials, the cue and outcome repeated while the animal could reach the lever in different ways.
 
-I extended the lab’s hBehaveMAE masked autoencoder to learn jointly from body pose, movement velocities, and task events. One version fused the streams at each time step. A second used masked attention so the streams could exchange information while preserving their own structure. I trained both to reconstruct missing inputs. Each successive level pooled neighboring tokens, so its representation described a longer stretch of behavior. This gave me candidate representations at several timescales without assigning the animal a goal or labeling where a behavioral routine began. [Stoffl et al., original hBehaveMAE model](https://github.com/amathislab/BehaveMAE)
+I applied **hBehaveMAE**, the hierarchical masked autoencoder developed by Lucas Stoffl, Andy Bonnetto, Stéphane d’Ascoli, and Alexander Mathis, to these recordings. Each successive level pools neighboring tokens, giving a representation of a longer stretch of behavior. I compared two ways of supplying body pose, movement velocities, and task events to the model. One fused the streams at matching time steps. The other used masked attention to exchange information across streams. I then asked which of the resulting representations could predict spikes on new trials. [Stoffl et al., ECCV 2024](https://doi.org/10.1007/978-3-031-73039-9_7)
 
 <figure class="half">
   <img src="{{ '/images/thesis-timescales/behavior-model-fusion-simple.webp' | relative_url }}" width="796" height="548" alt="Two streams of red and blue tokens enter a shared multilayer perceptron and emerge as a single green stream.">
   <img src="{{ '/images/thesis-timescales/behavior-model-fusion-attention.webp' | relative_url }}" width="772" height="548" alt="Masked self-attention lets the red and blue streams exchange information while retaining separate outputs for each.">
-  <figcaption>The two ways I combined behavioral inputs. For clarity, each diagram shows two streams. From thesis Fig. 4.</figcaption>
+  <figcaption>The two fusion configurations evaluated in my thesis, shown with two input streams for clarity. Thesis Fig. 4. The underlying hBehaveMAE architecture is from Stoffl et al. (2024).</figcaption>
 </figure>
 
 ## Which timescale predicts the spikes?
@@ -36,7 +36,7 @@ Across six frontal areas and the striatum, task events alone generally predicted
 <figure class="half">
   <img src="{{ '/images/thesis-timescales/premotor-level-0.webp' | relative_url }}" width="792" height="395" loading="lazy" alt="The level-zero prediction follows the sharp post-press increase in a premotor neuron’s mean firing rate.">
   <img src="{{ '/images/thesis-timescales/premotor-level-3.webp' | relative_url }}" width="801" height="395" loading="lazy" alt="The level-three prediction for the same neuron rises and falls more gradually.">
-  <figcaption>The same neuron and trials in both panels. Blue is the measured mean firing rate and dashed red is the prediction. The lever press occurs at zero seconds. From thesis Fig. 11A.</figcaption>
+  <figcaption>One premotor neuron from the Voloh et al. recordings. Blue is the measured mean firing rate and dashed red is the prediction. The lever press occurs at zero seconds. Thesis analysis, Fig. 11A.</figcaption>
 </figure>
 
 The more revealing test went in the other direction. Within each region, I grouped neuron–station pairs by the model level that best predicted their firing. Then I went back to the spikes and estimated each group’s intrinsic timescale from the decay of its autocorrelation. **Groups best predicted by longer behavioral windows also had more persistent neural activity.** The correlation was *r* = 0.51 (*p* = 0.005) in the attention-based hierarchical model. Grouping by stage in its control gave *r* = 0.19 (*p* = 0.327). The simpler fusion model also showed a positive association with pooling (*r* = 0.47, *p* = 0.011).
@@ -44,7 +44,7 @@ The more revealing test went in the other direction. Within each region, I group
 <figure class="half">
   <img src="{{ '/images/thesis-timescales/timescale-hierarchical.webp' | relative_url }}" width="851" height="685" loading="lazy" alt="Neural groups assigned to higher hierarchical levels tend to have longer intrinsic timescales. Colors identify seven brain regions.">
   <img src="{{ '/images/thesis-timescales/timescale-control.webp' | relative_url }}" width="792" height="685" loading="lazy" alt="The relationship between stage and neural timescale is weaker in the control model with temporal pooling disabled.">
-  <figcaption>Intrinsic timescale at the lever press, grouped by best-predicting level or stage. Dashed lines show linear fits. From thesis Fig. 12B.</figcaption>
+  <figcaption>Intrinsic timescale at the lever press, grouped by best-predicting level or stage. Dashed lines show linear fits. Thesis analysis of the Voloh et al. recordings, Fig. 12B.</figcaption>
 </figure>
 
 ## From temporal structure to control
@@ -52,3 +52,9 @@ The more revealing test went in the other direction. Within each region, I group
 A neural timescale measures persistence. An option makes a claim about control. Knowing which routine is active should help predict which action comes next and when the animal will switch. My four-second windows captured the first property. To test the second, I would look for a signal that generalizes across different ways of working a patch and changes when the animal decides to leave.
 
 The comparison I would run is between visits with similar presses, reward histories, and elapsed times that end in different choices. I would fit a candidate option model to behavior alone and test whether its estimated probability of ending a visit explains PFC activity beyond those matched variables. I would then ask whether a readout trained at one station could anticipate departures at another, before the monkey moves away. A signal that transfers across stations requiring different postures would be a candidate neural marker of option termination.
+
+
+## Model and data references
+
+- **Behavioral model.** Lucas Stoffl, Andy Bonnetto, Stéphane d’Ascoli, and Alexander Mathis. *Elucidating the Hierarchical Nature of Behavior with Masked Autoencoders*. ECCV 2024. [Paper](https://doi.org/10.1007/978-3-031-73039-9_7) · [Authors’ implementation](https://github.com/amathislab/BehaveMAE)
+- **Foraging experiment and recordings.** Benjamin Voloh, David J.-N. Maisson, Roberto Lopez Cervera, Indirah Conover, Mrunal Zambre, Benjamin Hayden, and Jan Zimmermann. *Hierarchical action encoding in prefrontal cortex of freely moving macaques*. Cell Reports, 2023. [Paper](https://doi.org/10.1016/j.celrep.2023.113091) · [Archived data and code](https://zenodo.org/records/8067596)
