@@ -6,6 +6,7 @@
   --profile-paper: #fbfaf7;
   --profile-ink: var(--profile-black);
   --profile-muted: #59595b;
+  --profile-body-copy: var(--profile-muted);
   --profile-accent: #76591d;
   --profile-emphasis: #906c26;
   --profile-rule: var(--profile-silver);
@@ -15,12 +16,14 @@
 }
 html[data-theme="dark"] {
   --profile-paper: #202020;
-  --profile-ink: #f3f2ef;
-  --profile-muted: var(--profile-silver);
+  --profile-silver: #c8cbd0;
+  --profile-ink: var(--profile-silver);
+  --profile-muted: #a8adb4;
+  --profile-body-copy: var(--profile-ink);
   --profile-accent: var(--profile-gold);
   --profile-emphasis: var(--profile-gold);
-  --profile-rule: #545456;
-  --profile-tint: #2a2a2b;
+  --profile-rule: #777b81;
+  --profile-tint: #2d3034;
   color-scheme: dark;
 }
 :root, html[data-theme="dark"] {
@@ -58,7 +61,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   margin-inline: auto;
   padding-inline: var(--profile-gutter);
 }
-.profile-masthead { background: var(--profile-black); color: #f3f2ef; }
+.profile-masthead { background: var(--profile-black); color: var(--profile-silver); }
 .profile-masthead :focus-visible, .page__footer :focus-visible { outline-color: var(--profile-gold); }
 .profile-bar, .profile-brand, .profile-nav, .profile-contact, .profile-contact a {
   display: flex;
@@ -75,9 +78,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .profile-monogram {
   display: block;
   flex: none;
-  width: 2.35rem;
-  height: 2.35rem;
-  padding: .21rem;
+  width: 2.65rem;
+  height: 2.65rem;
+  padding: .15rem;
   background: var(--profile-gold);
   color: var(--profile-black);
   border-radius: .2rem;
@@ -174,7 +177,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .profile-intro-text {
   max-width: 35rem;
   margin: 0;
-  color: var(--profile-muted);
+  color: var(--profile-body-copy);
   font-size: clamp(1rem, 1.3vw, 1.12rem);
   line-height: 1.68;
 }
@@ -256,7 +259,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   line-height: 1.3;
   letter-spacing: -.025em;
 }
-.profile-project p { margin: .65rem 0 0; color: var(--profile-muted); }
+.profile-project p { margin: .65rem 0 0; color: var(--profile-body-copy); }
 .profile-project .profile-text-link { display: inline-block; margin-top: .8rem; }
 .profile-project-figure { display: block; margin: 0; }
 .profile-project-figure img {
@@ -395,14 +398,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   margin-top: auto;
   padding-block: 1.45rem;
   border-top: 0;
-  color: white;
+  color: var(--profile-silver);
   animation: none;
 }
 .page__footer footer { padding-block: 0; margin-block: 0; }
 .profile-footer-links, .profile-footer-credits { display: flex; align-items: baseline; flex-wrap: wrap; gap: .45rem 1.3rem; }
 .profile-footer-links { color: inherit; font-size: .92rem; }
 .profile-footer-links span { font-weight: 600; margin-right: auto; }
-.profile-footer-credits { margin: .6rem 0 0; color: var(--profile-silver); font-size: .8rem; }
+.profile-footer-credits { margin: .6rem 0 0; color: #a8adb4; font-size: .8rem; }
 
 @media (min-width: 58em) {
   #main:not(.profile-home):has(.sidebar) { grid-template-columns: 12.6rem minmax(0, 1fr); gap: clamp(3rem, 6vw, 5.4rem); }
