@@ -22,7 +22,7 @@ repository               : "Pingsheng-NeuroAI/Pingsheng-NeuroAI.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "pingsheng_profile.jpg"
+  avatar           : "pingsheng-li-portrait.jpg"
   name             : "Pingsheng Li"
   pronouns         : "He/Him"
   bio              : "PhD student in Computer Science at McGill University. Research interests: NeuroAI, Foundation Models, and Embodied AI."

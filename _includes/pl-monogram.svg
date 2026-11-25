@@ -21,10 +21,12 @@
       </g>
     </mask>
   </defs>
-  <g mask="url(#pl-lettering)">
-    <rect width="16.429" height="7.702" fill="url(#pl-graphite)"/>
-    <g transform="skewX(-18)">
-      <rect class="profile-monogram-glint" x="-5" width="4.6" height="7.702" fill="url(#pl-reflection)"/>
+  <g class="profile-monogram-relief">
+    <g mask="url(#pl-lettering)">
+      <rect width="16.429" height="7.702" fill="url(#pl-graphite)"/>
+      <g transform="skewX(-18)">
+        <rect class="profile-monogram-glint" x="-5" width="4.6" height="7.702" fill="url(#pl-reflection)"/>
+      </g>
     </g>
   </g>
 </svg>

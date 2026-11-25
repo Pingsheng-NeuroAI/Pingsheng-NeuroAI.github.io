@@ -49,6 +49,38 @@ body {
 }
 h1, h2, h3 { font-family: var(--profile-font); font-weight: 600; }
 button, input, select, textarea { font-family: inherit; }
+
+// Light from the upper left catches the letter edge. The lower right casts a shadow.
+@media screen and (forced-colors: none) {
+  :root, .profile-contact-primary {
+    --letter-rim: rgba(255, 255, 255, .95);
+    --letter-edge: rgba(102, 96, 86, .66);
+    --letter-shadow: rgba(48, 43, 35, .31);
+  }
+  html[data-theme="dark"], .profile-masthead, .page__footer {
+    --letter-rim: rgba(239, 243, 250, .60);
+    --letter-edge: #575b62;
+    --letter-shadow: rgba(0, 0, 0, .88);
+  }
+  body, .profile-masthead, .page__footer, .profile-contact-primary {
+    text-shadow:
+      -.3px -.45px 0 var(--letter-rim),
+       .4px .75px 0 var(--letter-edge),
+       .55px 1.15px .8px var(--letter-shadow);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-shadow:
+      -.012em -.018em 0 var(--letter-rim),
+       .012em .022em 0 var(--letter-edge),
+       .022em .039em 0 var(--letter-edge),
+       .031em .055em .033em var(--letter-shadow);
+  }
+  button, input, select, textarea { text-shadow: inherit; }
+  .profile-monogram-relief {
+    filter: drop-shadow(-.12px -.18px 0 #fff2cb) drop-shadow(.17px .29px .13px rgba(48, 37, 20, .68));
+  }
+}
+
 a { text-underline-offset: .19em; }
 a:focus-visible, button:focus-visible, summary:focus-visible {
   outline: 2px solid var(--profile-accent);
