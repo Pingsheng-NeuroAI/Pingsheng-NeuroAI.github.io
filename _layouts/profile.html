@@ -30,6 +30,39 @@ layout: default
     </figure>
   </section>
 
+  <section class="profile-work" aria-labelledby="selected-work">
+    <div class="profile-section-head">
+      <h2 id="selected-work">Selected <em>work</em></h2>
+    </div>
+
+    {% assign linda = site.publications | where: "permalink", "/publication/neurips2026-fmts-linda" | first %}
+    {% if linda %}
+      <article class="profile-project" aria-labelledby="linda-title">
+        <div>
+          <h3 id="linda-title">LINDA</h3>
+          <p>I developed LINDA to learn patterns shared across neural recordings. It uses a joint embedding predictive architecture (JEPA) to predict how neural activity will evolve. With just two labeled trials from a new monkey, adding this prediction task improved how accurately the model decoded reach velocity.</p>
+          <a class="profile-text-link" href="{{ linda.paperurl | escape }}">NeurIPS workshop poster</a>
+        </div>
+        <figure class="profile-project-figure">
+          <img src="{{ '/images/linda-decoding.png' | relative_url }}" alt="Mean test R² was higher with joint self-supervised and supervised training than with supervised training alone at every budget from 2 to 32 labeled trials." width="1264" height="720" loading="lazy" decoding="async">
+          <figcaption>Blue squares show joint training. Gray circles show supervised training alone. Error bars show standard errors across six sessions from the held-out monkey. From Fig. 2C of our workshop manuscript.</figcaption>
+        </figure>
+      </article>
+    {% endif %}
+
+    <article class="profile-project" aria-labelledby="silicolabs-title">
+      <div>
+        <h3 id="silicolabs-title">Object recognition in VR</h3>
+        <p>At SilicoLabs, I built a Unity experiment and its data collection and analysis pipeline. We used the task to study how exploring a 3D object affects the ability of people and AI agents to recognize it.</p>
+      </div>
+      <ol class="profile-workflow" aria-label="SilicoLabs experiment workflow" role="list">
+        <li><i class="fa-solid fa-cube" aria-hidden="true"></i><span>Explore 3D objects</span></li>
+        <li><i class="fa-solid fa-database" aria-hidden="true"></i><span>Collect behavioral data</span></li>
+        <li><i class="fa-solid fa-chart-column" aria-hidden="true"></i><span>Compare recognition</span></li>
+      </ol>
+    </article>
+  </section>
+
   {% if site.publications.size > 0 %}
     <section class="profile-recent" aria-labelledby="recent-publications">
       <div class="profile-section-head">

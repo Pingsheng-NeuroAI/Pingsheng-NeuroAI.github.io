@@ -4,12 +4,14 @@
   font-family: var(--profile-sans);
   padding-bottom: 2rem;
 
-  .profile-records__scholar {
+  .profile-records__scholar,
+  .profile-records__download {
     margin: .6rem 0 2rem;
     font-size: .89rem;
   }
 
   .profile-records__scholar a,
+  .profile-records__download a,
   .profile-records__links a {
     color: var(--profile-accent);
     text-decoration: underline;

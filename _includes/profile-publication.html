@@ -5,11 +5,12 @@
     {% include publication-authors.html record=include.record %}
     {% if include.record.venue %}<p class="profile-records__venue">{{ include.record.venue | escape }}</p>{% endif %}
     {% if include.record.citation %}<p class="profile-records__citation">{{ include.record.citation }}</p>{% endif %}
-    {% if include.record.paperurl or include.record.slidesurl or include.record.bibtexurl %}
+    {% if include.record.paperurl or include.record.slidesurl or include.record.bibtexurl or include.record.codeurl %}
       <div class="profile-records__links">
         {% if include.record.paperurl %}<a href="{{ include.record.paperurl | escape }}" aria-label="Paper for {{ include.record.title | escape }}">Paper&nbsp;<span aria-hidden="true">↗</span></a>{% endif %}
         {% if include.record.slidesurl %}<a href="{{ include.record.slidesurl | escape }}">Slides</a>{% endif %}
         {% if include.record.bibtexurl %}<a href="{{ include.record.bibtexurl | escape }}">BibTeX</a>{% endif %}
+        {% if include.record.codeurl %}<a href="{{ include.record.codeurl | escape }}" aria-label="Code for {{ include.record.title | escape }}">Code&nbsp;<span aria-hidden="true">↗</span></a>{% endif %}
       </div>
     {% endif %}
   </div>
