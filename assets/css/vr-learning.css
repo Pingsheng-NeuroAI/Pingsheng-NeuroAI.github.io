@@ -2,7 +2,7 @@
 .vr-figure {
   display: block;
   margin: 2rem 0;
-  font-family: var(--profile-sans, sans-serif);
+  font-family: var(--profile-font, monospace);
 }
 .vr-sheet {
   color: var(--profile-ink);
@@ -17,14 +17,14 @@
 .vr-figure .vr-heading {
   display: block;
   margin: 0 0 .9rem;
-  font-family: var(--profile-sans, sans-serif);
+  font-family: var(--profile-font, monospace);
   font-size: 1.12em;
   line-height: 1.3;
   font-weight: 700;
 }
 .vr-figure figcaption {
   margin-top: .65rem;
-  font: normal .92rem/1.5 var(--profile-sans, sans-serif);
+  font: normal .92rem/1.5 var(--profile-font, monospace);
   color: var(--profile-muted);
 }
 .vr-figure .vr-fixed {

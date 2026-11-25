@@ -1,7 +1,7 @@
 // Publication lists and the academic CV share a dated record layout.
 .profile-records {
   color: var(--profile-ink);
-  font-family: var(--profile-sans);
+  font-family: var(--profile-font);
   padding-bottom: 2rem;
 
   .profile-records__scholar,
@@ -30,7 +30,7 @@
     padding: 0 0 .64rem;
     border-bottom: 1px solid var(--profile-ink);
     color: var(--profile-ink);
-    font: 400 1.8rem/1.16 var(--profile-serif);
+    font: 600 1.4rem/1.35 var(--profile-font);
     letter-spacing: -.025em;
   }
 
@@ -69,7 +69,7 @@
 
   .profile-records__title {
     margin: 0;
-    font: 400 1.65rem/1.2 var(--profile-serif);
+    font: 550 1.28rem/1.4 var(--profile-font);
     letter-spacing: -.017em;
     overflow-wrap: break-word;
 
@@ -129,20 +129,20 @@
     .profile-records__group + .profile-records__group { margin-top: 2.2rem; }
     .profile-records__entry { grid-template-columns: 2.6rem minmax(0, 1fr); column-gap: .6rem; }
     .profile-records__honors li { grid-template-columns: 5rem minmax(0, 1fr); column-gap: .7rem; }
-    .profile-records__title { font-size: 1.42rem; }
+    .profile-records__title { font-size: 1.13rem; }
   }
 }
 
 .profile-records--cv {
   .profile-records__entry { padding: .85rem 0; }
-  .profile-records__title { font-size: 1.39rem; }
+  .profile-records__title { font-size: 1.14rem; }
   .profile-records__links { margin-top: .32rem; }
 }
 
 .profile-byline {
   margin: .45rem 0 0;
   color: var(--profile-muted);
-  font: 400 .9rem/1.5 var(--profile-sans);
+  font: 400 .9rem/1.5 var(--profile-font);
 
   strong {
     color: var(--profile-ink);
