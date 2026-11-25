@@ -1,29 +1,33 @@
 // Shared palette and type for the profile, archives, and individual papers.
 :root {
-  --profile-paper: #faf9f5;
-  --profile-ink: #192e28;
-  --profile-muted: #53645c;
-  --profile-accent: #285d49;
-  --profile-rule: #cdd5ca;
-  --profile-tint: #eff2e9;
-  --profile-button-ink: #fffefa;
+  --profile-pink: #e40171;
+  --profile-blue: #003aad;
+  --profile-paper: #fffcfd;
+  --profile-ink: #16223c;
+  --profile-muted: #525a70;
+  --profile-accent: var(--profile-blue);
+  --profile-emphasis: var(--profile-pink);
+  --profile-rule: #cbd2e2;
+  --profile-tint: #f0f3fb;
+  --profile-button-ink: #fff;
   --profile-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --profile-sans: "DM Sans", "Helvetica Neue", Arial, sans-serif;
   --profile-gutter: clamp(1.25rem, 6vw, 5rem);
 }
 html[data-theme="dark"] {
-  --profile-paper: #16211c;
-  --profile-ink: #edf0df;
-  --profile-muted: #b3c3b7;
-  --profile-accent: #acccaf;
-  --profile-rule: #405549;
-  --profile-tint: #202e25;
-  --profile-button-ink: #14251b;
+  --profile-paper: #10172a;
+  --profile-ink: #f5f5fc;
+  --profile-muted: #bdc6de;
+  --profile-accent: #adc8ff;
+  --profile-emphasis: #ff8fc1;
+  --profile-rule: #394866;
+  --profile-tint: #1a2640;
+  --profile-button-ink: #10172a;
   color-scheme: dark;
 }
 :root, html[data-theme="dark"] {
   --global-bg-color: var(--profile-paper);
-  --global-footer-bg-color: var(--profile-tint);
+  --global-footer-bg-color: var(--profile-blue);
   --global-text-color: var(--profile-ink);
   --global-text-color-light: var(--profile-muted);
   --global-border-color: var(--profile-rule);
@@ -31,6 +35,7 @@ html[data-theme="dark"] {
   --global-link-color: var(--profile-accent);
   --global-link-color-visited: var(--profile-accent);
   --global-link-color-hover: var(--profile-ink);
+  --global-fig-caption-color: var(--profile-muted);
 }
 html { font-size: 100%; }
 body {
@@ -54,9 +59,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   margin-inline: auto;
   padding-inline: var(--profile-gutter);
 }
-.profile-masthead {
-  border-bottom: 1px solid var(--profile-rule);
-}
+.profile-masthead { background: var(--profile-pink); color: white; }
+.profile-masthead :focus-visible, .page__footer :focus-visible { outline-color: white; }
 .profile-bar, .profile-brand, .profile-nav, .profile-contact, .profile-contact a {
   display: flex;
   align-items: center;
@@ -75,14 +79,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   width: 2.35rem;
   height: 2.35rem;
   padding: 0 .14em .06em 0;
-  background: var(--profile-ink);
-  color: var(--profile-paper);
+  background: white;
+  color: var(--profile-blue);
   font: italic 2rem/.9 var(--profile-serif);
   letter-spacing: -.09em;
   border-radius: .2rem;
 }
 .profile-brand, .profile-brand:visited, .profile-nav a, .profile-nav a:visited {
-  color: var(--profile-ink);
+  color: inherit;
   text-decoration: none;
 }
 .profile-nav { gap: clamp(1.1rem, 2.5vw, 2.4rem); flex-wrap: wrap; }
@@ -96,7 +100,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   position: absolute;
   inset: auto 0 .22rem;
   height: 2px;
-  background: var(--profile-accent);
+  background: currentColor;
 }
 .profile-theme {
   display: grid;
@@ -105,12 +109,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   height: 2.65rem;
   padding: 0;
   background: transparent;
-  color: var(--profile-accent);
-  border: 1px solid var(--profile-rule);
+  color: white;
+  border: 1px solid currentColor;
   border-radius: 50%;
   cursor: pointer;
 }
-.profile-theme:hover { background: var(--profile-tint); }
+.profile-theme:hover { background: white; color: var(--profile-blue); }
 .profile-skip {
   position: absolute;
   top: -5em;
@@ -162,7 +166,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   letter-spacing: -.035em;
 }
 .profile-intro h1 em { margin-left: .035em; }
-.profile-intro h1 em, .profile-section-head h2 em { color: var(--profile-accent); font-weight: 400; }
+.profile-intro h1 em, .profile-section-head h2 em { color: var(--profile-emphasis); font-weight: 400; }
 .profile-role {
   margin: 1rem 0 .85rem;
   font-size: clamp(1.18rem, 1.85vw, 1.55rem);
@@ -203,8 +207,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   content: "";
   position: absolute;
   inset: 9% 0 0 12%;
-  background-color: #244b3e;
-  background-image: repeating-radial-gradient(ellipse at 7% 108%, transparent 0 10px, rgba(179,201,155,.42) 10.5px 11.2px, transparent 11.7px 17px);
+  background-color: var(--profile-blue);
+  background-image: repeating-radial-gradient(ellipse at 7% 108%, transparent 0 10px, rgba(255,255,255,.32) 10.5px 11.2px, transparent 11.7px 17px);
 }
 .profile-portrait-plate img {
   position: absolute;
@@ -391,14 +395,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   position: static;
   margin-top: auto;
   padding-block: 1.45rem;
-  border-top: 1px solid var(--profile-rule);
+  border-top: 0;
+  color: white;
   animation: none;
 }
 .page__footer footer { padding-block: 0; margin-block: 0; }
 .profile-footer-links, .profile-footer-credits { display: flex; align-items: baseline; flex-wrap: wrap; gap: .45rem 1.3rem; }
-.profile-footer-links { color: var(--profile-ink); font-size: .92rem; }
+.profile-footer-links { color: inherit; font-size: .92rem; }
 .profile-footer-links span { font-weight: 600; margin-right: auto; }
-.profile-footer-credits { margin: .6rem 0 0; color: var(--profile-muted); font-size: .8rem; }
+.profile-footer-credits { margin: .6rem 0 0; color: #dce6ff; font-size: .8rem; }
 
 @media (min-width: 58em) {
   #main:not(.profile-home):has(.sidebar) { grid-template-columns: 12.6rem minmax(0, 1fr); gap: clamp(3rem, 6vw, 5.4rem); }
