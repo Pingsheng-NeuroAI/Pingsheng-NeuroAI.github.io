@@ -73,15 +73,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   letter-spacing: -.035em;
 }
 .profile-monogram {
-  display: grid;
-  place-items: center;
+  display: block;
+  flex: none;
   width: 2.35rem;
   height: 2.35rem;
-  padding: 0;
+  padding: .21rem;
   background: var(--profile-gold);
   color: var(--profile-black);
-  font: italic 600 1.48rem/1 var(--profile-font);
-  letter-spacing: -.07em;
   border-radius: .2rem;
 }
 .profile-brand, .profile-brand:visited, .profile-nav a, .profile-nav a:visited {
