@@ -12,7 +12,7 @@ layout: default
       </p>
       <h1 id="profile-name">{% assign names = site.author.name | split: ' ' %}{% for name in names %}{% if forloop.last %}<em>{{ name }}</em>{% else %}{{ name }} {% endif %}{% endfor %}</h1>
       <p class="profile-role">PhD student in Computer Science</p>
-      <p class="profile-intro-text">My research interests include generalist intelligence, world models, brain–computer interfaces, and LLM-based agents.</p>
+      <p class="profile-intro-text">My main interest is generalist intelligence. I’m curious how LLM agents can use world models to plan in unfamiliar environments and how brain–computer interfaces can adapt to new users.</p>
       <div class="profile-contact" aria-label="Contact and profiles">
         {% if site.author.email %}<a class="profile-contact-primary" href="mailto:{{ site.author.email }}"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Email me</a>{% endif %}
         {% if site.author.googlescholar %}<a href="{{ site.author.googlescholar | escape }}"><i class="ai ai-google-scholar" aria-hidden="true"></i>Google Scholar</a>{% endif %}
