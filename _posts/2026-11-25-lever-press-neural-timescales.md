@@ -19,12 +19,14 @@ Voloh and colleagues found that frontal activity tracked both recognizable actio
 
 My starting point was the foraging dataset collected by the team behind Voloh et al. (2023). Jan Zimmermann shared the recordings for my thesis. About 80 sessions from each of two rhesus macaques contained both 3D pose and neural data. I analyzed the second through fourth presses at a station, when the animal stayed and received the same reward. Across those trials, the cue and outcome repeated while the animal could reach the lever in different ways.
 
-I applied **hBehaveMAE**, the hierarchical masked autoencoder developed by Lucas Stoffl, Andy Bonnetto, Stéphane d’Ascoli, and Alexander Mathis, to these recordings. Each successive level pools neighboring tokens, giving a representation of a longer stretch of behavior. I compared two ways of supplying body pose, movement velocities, and task events to the model. One fused the streams at matching time steps. The other used masked attention to exchange information across streams. I then asked which of the resulting representations could predict spikes on new trials. [Stoffl et al., ECCV 2024](https://doi.org/10.1007/978-3-031-73039-9_7)
+I extended **hBehaveMAE** to model body pose, movement velocities, and task events jointly. Lucas Stoffl, Andy Bonnetto, Stéphane d’Ascoli, and Alexander Mathis developed the original hierarchical masked autoencoder for motion capture data. Its temporal pooling gave me a way to represent the same lever press at several timescales. [Stoffl et al., ECCV 2024](https://doi.org/10.1007/978-3-031-73039-9_7)
+
+For my thesis, I developed two multimodal variants. The first concatenated tokens from the three streams at each time step and used a shared multilayer perceptron to combine them. The second used masked self-attention so that the streams could exchange information while preserving the structure within each one. I then tested which levels of these models best predicted spikes on held-out trials.
 
 <figure class="half">
   <img src="{{ '/images/thesis-timescales/behavior-model-fusion-simple.webp' | relative_url }}" width="796" height="548" alt="Two streams of red and blue tokens enter a shared multilayer perceptron and emerge as a single green stream.">
   <img src="{{ '/images/thesis-timescales/behavior-model-fusion-attention.webp' | relative_url }}" width="772" height="548" alt="Masked self-attention lets the red and blue streams exchange information while retaining separate outputs for each.">
-  <figcaption>The two fusion configurations evaluated in my thesis, shown with two input streams for clarity. Thesis Fig. 4. The underlying hBehaveMAE architecture is from Stoffl et al. (2024).</figcaption>
+  <figcaption>The two fusion variants I developed for the multimodal extension, illustrated with two input streams. Thesis Fig. 4. The base architecture is hBehaveMAE (Stoffl et al., 2024).</figcaption>
 </figure>
 
 ## Which timescale predicts the spikes?
@@ -56,5 +58,5 @@ The comparison I would run is between visits with similar presses, reward histor
 
 ## Model and data references
 
-- **Behavioral model.** Lucas Stoffl, Andy Bonnetto, Stéphane d’Ascoli, and Alexander Mathis. *Elucidating the Hierarchical Nature of Behavior with Masked Autoencoders*. ECCV 2024. [Paper](https://doi.org/10.1007/978-3-031-73039-9_7) · [Authors’ implementation](https://github.com/amathislab/BehaveMAE)
+- **Original hBehaveMAE model.** Lucas Stoffl, Andy Bonnetto, Stéphane d’Ascoli, and Alexander Mathis. *Elucidating the Hierarchical Nature of Behavior with Masked Autoencoders*. ECCV 2024. [Paper](https://doi.org/10.1007/978-3-031-73039-9_7) · [Authors’ implementation](https://github.com/amathislab/BehaveMAE)
 - **Foraging experiment and recordings.** Benjamin Voloh, David J.-N. Maisson, Roberto Lopez Cervera, Indirah Conover, Mrunal Zambre, Benjamin Hayden, and Jan Zimmermann. *Hierarchical action encoding in prefrontal cortex of freely moving macaques*. Cell Reports, 2023. [Paper](https://doi.org/10.1016/j.celrep.2023.113091) · [Archived data and code](https://zenodo.org/records/8067596)
