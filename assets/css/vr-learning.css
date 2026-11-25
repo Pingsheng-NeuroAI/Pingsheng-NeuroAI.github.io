@@ -1,0 +1,94 @@
+/* Figures for the SilicoLabs active object learning article. */
+.vr-figure {
+  display: block;
+  margin: 2rem 0;
+  font-family: var(--profile-sans, sans-serif);
+}
+.vr-sheet {
+  --vr-ink: #1c302e;
+  --vr-secondary: #405450;
+  --vr-rule: #c5d2cc;
+  color: var(--vr-ink);
+  background: #f6f8f4;
+  border: 1px solid var(--vr-rule);
+  padding: clamp(.85rem, 3vw, 1.5rem);
+  border-radius: .35rem;
+  font-size: .95rem;
+  line-height: 1.45;
+}
+.vr-sheet strong { color: var(--vr-ink); }
+.vr-figure .vr-heading {
+  display: block;
+  margin: 0 0 .9rem;
+  font-family: var(--profile-sans, sans-serif);
+  font-size: 1.12em;
+  line-height: 1.3;
+  font-weight: 700;
+}
+.vr-figure figcaption {
+  margin-top: .65rem;
+  font: normal .92rem/1.5 var(--profile-sans, sans-serif);
+  color: var(--profile-muted);
+}
+.vr-figure .vr-fixed {
+  margin-bottom: .8rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--vr-rule);
+}
+.vr-figure .vr-observation {
+  display: grid;
+  grid-template-columns: minmax(6rem, 30%) 1fr;
+  align-items: center;
+  gap: .8rem;
+}
+.vr-figure .vr-observation img,
+.vr-figure .vr-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+.vr-figure .vr-sequence {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .3em .6em;
+  padding-top: .8rem;
+  font-weight: 650;
+}
+.vr-figure .vr-arrow { color: #4c6962; }
+.vr-figure .vr-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+}
+.vr-figure .vr-panel strong { display: block; margin: 0 0 .3rem; }
+.vr-figure .vr-transfer,
+.vr-figure .vr-summary {
+  margin: .8rem 0 0;
+  padding-top: .7rem;
+  border-top: 1px solid var(--vr-rule);
+}
+.vr-figure .vr-pilot-result {
+  margin: .45rem 0 0;
+  color: var(--vr-secondary);
+  font-size: .94em;
+}
+.vr-figure .vr-comparison {
+  display: grid;
+  grid-template-columns: minmax(7rem, .7fr) 1.4fr;
+  margin: 0;
+}
+.vr-figure .vr-comparison dt,
+.vr-figure .vr-comparison dd {
+  padding: .55rem 0;
+  margin: 0;
+  border-top: 1px solid var(--vr-rule);
+  line-height: 1.45;
+}
+.vr-figure .vr-comparison dt { font-weight: 650; padding-right: .8rem; }
+.vr-figure .vr-comparison dd { color: var(--vr-secondary); }
+@media (max-width: 650px) {
+  .vr-figure .vr-panel-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .vr-figure .vr-comparison { grid-template-columns: minmax(5.8rem,.7fr) 1.35fr; }
+}

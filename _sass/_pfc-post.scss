@@ -1,0 +1,46 @@
+.pfc-figure {
+  display: block;
+  margin: 2rem 0;
+
+  > img, .pfc-panels img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  > img {
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+  figcaption {
+    margin: .85rem 0 0;
+    padding-inline-start: .8rem;
+    border-inline-start: 2px solid var(--profile-rule);
+    color: var(--profile-muted);
+    font: normal .97rem/1.55 var(--profile-sans);
+  }
+  figcaption strong { color: var(--profile-ink); }
+}
+
+.pfc-panels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  b {
+    display: block;
+    margin: 0 0 .45rem;
+    color: var(--profile-ink);
+    font: 600 .95rem/1.45 var(--profile-sans);
+  }
+  img { width: 100%; height: auto; }
+  @media (min-width: 48em) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pfc-model-detail {
+  margin: 1.2rem 0;
+  summary { cursor: pointer; color: var(--profile-accent); font-weight: 600; }
+  p { margin: .65rem 0; }
+}
