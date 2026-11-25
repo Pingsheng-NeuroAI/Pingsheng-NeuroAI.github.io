@@ -81,9 +81,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   width: 2.65rem;
   height: 2.65rem;
   padding: .15rem;
-  background: var(--profile-gold);
-  color: var(--profile-black);
+  background: linear-gradient(135deg, #bf9f61, #ebd9aa 34%, var(--profile-gold) 58%, #c3a76b);
+  box-shadow: inset 0 0 0 1px rgba(255, 244, 211, .38);
   border-radius: .2rem;
+  forced-color-adjust: none;
+}
+@keyframes profile-letter-reflection {
+  from { transform: translateX(0); }
+  to { transform: translateX(25px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .profile-brand:is(:hover, :focus-visible) .profile-monogram-glint {
+    animation: profile-letter-reflection .9s ease-in-out;
+  }
+  @media (hover: none) {
+    .profile-monogram-glint { animation: profile-letter-reflection .9s ease-in-out .3s; }
+  }
 }
 .profile-brand, .profile-brand:visited, .profile-nav a, .profile-nav a:visited {
   color: inherit;
