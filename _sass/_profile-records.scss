@@ -31,7 +31,6 @@
     border-bottom: 1px solid var(--profile-ink);
     color: var(--profile-ink);
     font: 600 1.4rem/1.35 var(--profile-font);
-    letter-spacing: -.025em;
   }
 
   .profile-records__list,
@@ -70,7 +69,6 @@
   .profile-records__title {
     margin: 0;
     font: 550 1.28rem/1.4 var(--profile-font);
-    letter-spacing: -.017em;
     overflow-wrap: break-word;
 
     a {

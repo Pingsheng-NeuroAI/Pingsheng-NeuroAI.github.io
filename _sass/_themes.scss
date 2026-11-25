@@ -13,10 +13,9 @@ $doc-font-size              : 16;
 $paragraph-indent           : false; // true, false (default)
 $indent-var                 : 1.3em;
 
-/* Shared typeface for the theme and the profile layouts. */
+/* Reading text and code use separate families. */
 $monospace                  : "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-$serif                      : $monospace;
-$sans-serif                 : $monospace;
+$sans-serif                 : "Nunito", ui-rounded, system-ui, sans-serif;
 
 /* Sans serif typefaces */
 $sans-serif-narrow          : $sans-serif;
@@ -41,7 +40,7 @@ $type-size-8                : 0.625em;  // ~10px
 
 $global-font-family         : $sans-serif;
 $header-font-family         : $sans-serif;
-$caption-font-family        : $serif;
+$caption-font-family        : $sans-serif;
 
 /* ==========================================================================
    Breakpoints

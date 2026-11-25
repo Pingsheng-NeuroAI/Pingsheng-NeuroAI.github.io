@@ -11,7 +11,7 @@ redirect_from:
 
 <div class="profile-records profile-records--cv" markdown="1">
 
-<p class="profile-records__download"><a href="{{ '/files/cv.pdf' | relative_url }}" download="Pingsheng-Li-Resume.pdf">Download one-page résumé (PDF)</a></p>
+<p class="profile-records__download"><a href="{{ '/files/cv.pdf' | relative_url }}?v={{ site.time | date: '%s' }}" download="Pingsheng-Li-Resume.pdf">Download one-page résumé (PDF)</a></p>
 
 <section class="profile-records__group profile-records__education" markdown="1">
 
