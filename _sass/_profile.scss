@@ -1,33 +1,32 @@
 // Shared palette and type for the profile, archives, and individual papers.
 :root {
-  --profile-pink: #e40171;
-  --profile-blue: #003aad;
-  --profile-paper: #fffcfd;
-  --profile-ink: #16223c;
-  --profile-muted: #525a70;
-  --profile-accent: var(--profile-blue);
-  --profile-emphasis: var(--profile-pink);
-  --profile-rule: #cbd2e2;
-  --profile-tint: #f0f3fb;
-  --profile-button-ink: #fff;
+  --profile-black: #181818;
+  --profile-gold: #dec483;
+  --profile-silver: #c4c5c7;
+  --profile-paper: #fbfaf7;
+  --profile-ink: var(--profile-black);
+  --profile-muted: #59595b;
+  --profile-accent: #76591d;
+  --profile-emphasis: #906c26;
+  --profile-rule: var(--profile-silver);
+  --profile-tint: #f0efec;
   --profile-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --profile-sans: "DM Sans", "Helvetica Neue", Arial, sans-serif;
   --profile-gutter: clamp(1.25rem, 6vw, 5rem);
 }
 html[data-theme="dark"] {
-  --profile-paper: #10172a;
-  --profile-ink: #f5f5fc;
-  --profile-muted: #bdc6de;
-  --profile-accent: #adc8ff;
-  --profile-emphasis: #ff8fc1;
-  --profile-rule: #394866;
-  --profile-tint: #1a2640;
-  --profile-button-ink: #10172a;
+  --profile-paper: #202020;
+  --profile-ink: #f3f2ef;
+  --profile-muted: var(--profile-silver);
+  --profile-accent: var(--profile-gold);
+  --profile-emphasis: var(--profile-gold);
+  --profile-rule: #545456;
+  --profile-tint: #2a2a2b;
   color-scheme: dark;
 }
 :root, html[data-theme="dark"] {
   --global-bg-color: var(--profile-paper);
-  --global-footer-bg-color: var(--profile-blue);
+  --global-footer-bg-color: var(--profile-black);
   --global-text-color: var(--profile-ink);
   --global-text-color-light: var(--profile-muted);
   --global-border-color: var(--profile-rule);
@@ -59,8 +58,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   margin-inline: auto;
   padding-inline: var(--profile-gutter);
 }
-.profile-masthead { background: var(--profile-pink); color: white; }
-.profile-masthead :focus-visible, .page__footer :focus-visible { outline-color: white; }
+.profile-masthead { background: var(--profile-black); color: #f3f2ef; }
+.profile-masthead :focus-visible, .page__footer :focus-visible { outline-color: var(--profile-gold); }
 .profile-bar, .profile-brand, .profile-nav, .profile-contact, .profile-contact a {
   display: flex;
   align-items: center;
@@ -79,8 +78,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   width: 2.35rem;
   height: 2.35rem;
   padding: 0 .14em .06em 0;
-  background: white;
-  color: var(--profile-blue);
+  background: var(--profile-gold);
+  color: var(--profile-black);
   font: italic 2rem/.9 var(--profile-serif);
   letter-spacing: -.09em;
   border-radius: .2rem;
@@ -100,7 +99,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   position: absolute;
   inset: auto 0 .22rem;
   height: 2px;
-  background: currentColor;
+  background: var(--profile-gold);
 }
 .profile-theme {
   display: grid;
@@ -109,12 +108,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   height: 2.65rem;
   padding: 0;
   background: transparent;
-  color: white;
+  color: var(--profile-silver);
   border: 1px solid currentColor;
   border-radius: 50%;
   cursor: pointer;
 }
-.profile-theme:hover { background: white; color: var(--profile-blue); }
+.profile-theme:hover { background: var(--profile-silver); color: var(--profile-black); }
 .profile-skip {
   position: absolute;
   top: -5em;
@@ -193,10 +192,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .profile-contact a.profile-contact-primary {
   padding: .5rem 1.05rem;
   border-radius: .22rem;
-  background: var(--profile-accent);
-  color: var(--profile-button-ink);
+  background: var(--profile-gold);
+  color: var(--profile-black);
 }
-.profile-contact a.profile-contact-primary:hover { background: var(--profile-ink); }
+.profile-contact a.profile-contact-primary:hover { background: var(--profile-silver); }
 .profile-portrait { display: block; justify-self: end; width: 100%; max-width: 23.5rem; margin: 0; }
 .profile-portrait-plate {
   position: relative;
@@ -207,8 +206,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   content: "";
   position: absolute;
   inset: 9% 0 0 12%;
-  background-color: var(--profile-blue);
-  background-image: repeating-radial-gradient(ellipse at 7% 108%, transparent 0 10px, rgba(255,255,255,.32) 10.5px 11.2px, transparent 11.7px 17px);
+  background-color: var(--profile-silver);
+  background-image: repeating-radial-gradient(ellipse at 7% 108%, transparent 0 10px, rgba(24,24,24,.26) 10.5px 11.2px, transparent 11.7px 17px);
 }
 .profile-portrait-plate img {
   position: absolute;
@@ -232,7 +231,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .profile-portrait figcaption span + span { border-left: 1px solid var(--profile-rule); padding-left: .5rem; }
 .profile-work, .profile-recent, .profile-background {
-  border-top: 1px solid var(--profile-ink);
+  border-top: 1px solid var(--profile-rule);
   padding-block: clamp(2rem, 4vw, 3.3rem);
 }
 .profile-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.35rem; }
@@ -403,7 +402,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .profile-footer-links, .profile-footer-credits { display: flex; align-items: baseline; flex-wrap: wrap; gap: .45rem 1.3rem; }
 .profile-footer-links { color: inherit; font-size: .92rem; }
 .profile-footer-links span { font-weight: 600; margin-right: auto; }
-.profile-footer-credits { margin: .6rem 0 0; color: #dce6ff; font-size: .8rem; }
+.profile-footer-credits { margin: .6rem 0 0; color: var(--profile-silver); font-size: .8rem; }
 
 @media (min-width: 58em) {
   #main:not(.profile-home):has(.sidebar) { grid-template-columns: 12.6rem minmax(0, 1fr); gap: clamp(3rem, 6vw, 5.4rem); }
